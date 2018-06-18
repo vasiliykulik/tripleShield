@@ -10,12 +10,8 @@ extern double Lots = 1;
 extern double TrailingStop = 10000;
 int iteration;
 /*
-Обьекты:
-Тик
-ПолуВолна OsMa (у меня реализовано по простому - direction по двум тикам)
-ПолуВолна MACD (у меня реализовано по простому - наличие критерия в ту или иную сторону)
-Двойной критерий (у меня реализовано по простому - только сам факт наличия)
-и допилен Stochastic по принципу OsMA
+Implement Open Order operation base on OsMA DCM5 + DCM15 + ВСH1 + ВСH4 + Criterion H1 for Sell operation
+how to make it simple
 */
 //+------------------------------------------------------------------+
 //|                                                                  |
