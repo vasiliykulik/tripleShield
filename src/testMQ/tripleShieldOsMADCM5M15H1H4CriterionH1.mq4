@@ -1264,7 +1264,7 @@ result3 = iLow(NULL,PERIOD_M5,halfWave_3M5[0]);
             для покупки если (doubleCriterionTrendH1 == 0 И doubleCriterionEntryPointM15 == 0 И doubleCriterionTheTimeOfEntryM5 == 0 И doubleCriterionM1==0 И allOsMA==0 И allStochastic == 0) открыть покупку
             */
             buy ==1 &&
-            doubleCriterionChannelH4 == 0 && doubleCriterionTrendH1 == 0 && doubleCriterionEntryPointM15 == 0 && doubleCriterionTheTimeOfEntryM5 == 0 && doubleCriterionM1==0
+            doubleCriterionChannelH4 == 0 && doubleCriterionTrendH1 == 0 && doubleCriterionEntryPointM15 == 0 && doubleCriterionTheTimeOfEntryM5 == 0 && doubleCriterionM1==0 &&
             doubleCriterionM1 == 0 &&
             // Macd_1_M1 - H1
             0>Macd_1_M1 && Macd_0_M1>0
@@ -1288,7 +1288,7 @@ result3 = iLow(NULL,PERIOD_M5,halfWave_3M5[0]);
            для продажи если (doubleCriterionTrendH1 == 1 И doubleCriterionEntryPointM15 == 1 И doubleCriterionTheTimeOfEntryM5 == 1 И doubleCriterionM1==1 И allOsMA==1 И allStochastic == 1) открыть продажу
            */
            sell ==1 &&
-           doubleCriterionChannelH4 == 1 && doubleCriterionTrendH1 == 1 && doubleCriterionEntryPointM15 == 1 && doubleCriterionTheTimeOfEntryM5 == 1 && doubleCriterionM1==1
+           doubleCriterionChannelH4 == 1 && doubleCriterionTrendH1 == 1 && doubleCriterionEntryPointM15 == 1 && doubleCriterionTheTimeOfEntryM5 == 1 && doubleCriterionM1==1 &&
                        doubleCriterionM1 == 1 &&
             0<Macd_1_M1 && Macd_0_M1<0
            // Criterion for sell position according to the TS
