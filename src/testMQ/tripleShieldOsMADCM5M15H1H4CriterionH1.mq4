@@ -15,6 +15,7 @@ how to make it simple
 1. Блоке определения пары драйвера меняем iMACD на iOsMA (4 замены)
 2. В блоках определения критериев (5 раз по 4 замены)
 3. Перед блоком открытия позиций последний и предпоследний тик М1
+4. Убираем из определения функции MODE_MAIN,
 */
 //+------------------------------------------------------------------+
 //|                                                                  |
@@ -114,15 +115,15 @@ Macd_1H4PairDriver=0;
 Macd_2H4PairDriver=0;
       while(!(Macd_1H4PairDriver>0 && Macd_2H4PairDriver>0) && !(Macd_1H4PairDriver<0 && Macd_2H4PairDriver<0)){
       beginPairDriver++;
-      Macd_1H4PairDriver=iOsMA(myCurrentPair,PERIOD_M15,12,26,9,PRICE_CLOSE,MODE_MAIN,beginPairDriver);
-      Macd_2H4PairDriver=iOsMA(myCurrentPair,PERIOD_M15,12,26,9,PRICE_CLOSE,MODE_MAIN,beginPairDriver+1);
+      Macd_1H4PairDriver=iOsMA(myCurrentPair,PERIOD_M15,12,26,9,PRICE_CLOSE,beginPairDriver);
+      Macd_2H4PairDriver=iOsMA(myCurrentPair,PERIOD_M15,12,26,9,PRICE_CLOSE,beginPairDriver+1);
       if        (Macd_1H4PairDriver>0 && Macd_2H4PairDriver>0){what0HalfWavePairDriver =0;}
       else if   (Macd_1H4PairDriver<0 && Macd_2H4PairDriver<0){what0HalfWavePairDriver =1;}
       countHalfWavesPairDriver=0;
       what_1HalfWavePirDriver=0;
          for (iPD = beginPairDriver; countHalfWavesPairDriver<1; iPD++){
-            MacdIplus3H4PairDriver=iOsMA(myCurrentPair,PERIOD_M15,12,26,9,PRICE_CLOSE,MODE_MAIN,iPD+1);
-            MacdIplus4H4PairDriver=iOsMA(myCurrentPair,PERIOD_M15,12,26,9,PRICE_CLOSE,MODE_MAIN,iPD+2);
+            MacdIplus3H4PairDriver=iOsMA(myCurrentPair,PERIOD_M15,12,26,9,PRICE_CLOSE,iPD+1);
+            MacdIplus4H4PairDriver=iOsMA(myCurrentPair,PERIOD_M15,12,26,9,PRICE_CLOSE,iPD+2);
             if (countHalfWavesPairDriver==0 && what0HalfWavePairDriver==0 && MacdIplus3H4PairDriver<0 && MacdIplus4H4PairDriver<0)
                {
                   countHalfWavesPairDriver++;
@@ -250,8 +251,8 @@ ArrayResize - в цикле не пойдет, так как есть
   while(!(Macd_1H4>0 && Macd_2H4>0) && !(Macd_1H4<0 && Macd_2H4<0)){
 
       begin++;
-      Macd_1H4=iOsMA(NULL,PERIOD_H4,12,26,9,PRICE_CLOSE,MODE_MAIN,begin);
-      Macd_2H4=iOsMA(NULL,PERIOD_H4,12,26,9,PRICE_CLOSE,MODE_MAIN,begin+1);
+      Macd_1H4=iOsMA(NULL,PERIOD_H4,12,26,9,PRICE_CLOSE,begin);
+      Macd_2H4=iOsMA(NULL,PERIOD_H4,12,26,9,PRICE_CLOSE,begin+1);
 
       if        (Macd_1H4>0 && Macd_2H4>0){what0HalfWaveMACDH4 =0;}
       else if   (Macd_1H4<0 && Macd_2H4<0){what0HalfWaveMACDH4 =1;}
@@ -259,8 +260,8 @@ ArrayResize - в цикле не пойдет, так как есть
 
   // else // Print("   ERROR (Catched 0) MACD equals 0,0000 PERIOD_H4 ", countHalfWavesH4);
   for (i = begin;countHalfWavesH4<=3;i++){
-  MacdIplus3H4=iOsMA(NULL,PERIOD_H4,12,26,9,PRICE_CLOSE,MODE_MAIN,i+1);
-  MacdIplus4H4=iOsMA(NULL,PERIOD_H4,12,26,9,PRICE_CLOSE,MODE_MAIN,i+2);
+  MacdIplus3H4=iOsMA(NULL,PERIOD_H4,12,26,9,PRICE_CLOSE,i+1);
+  MacdIplus4H4=iOsMA(NULL,PERIOD_H4,12,26,9,PRICE_CLOSE,i+2);
     if (countHalfWavesH4==0 && what0HalfWaveMACDH4==0 && MacdIplus3H4<0 && MacdIplus4H4<0)
         {
             countHalfWavesH4++;
@@ -386,17 +387,17 @@ ArrayResize - в цикле не пойдет, так как есть
 
   begin++;
 
-    Macd_1H1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_CLOSE,MODE_MAIN,begin);
+    Macd_1H1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_CLOSE,begin);
 
-    Macd_2H1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_CLOSE,MODE_MAIN,begin+1);
+    Macd_2H1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_CLOSE,begin+1);
 
     if        (Macd_1H1>0 && Macd_2H1>0){what0HalfWaveMACDH1 =0;}
     else if   (Macd_1H1<0 && Macd_2H1<0){what0HalfWaveMACDH1 =1;}
   }
   // else // Print("   ERROR (Catched 0) MACD equals 0,0000 PERIOD_H1 ", countHalfWavesH1);
   for (i = begin;countHalfWavesH1<=3;i++){
-  MacdIplus3H1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_CLOSE,MODE_MAIN,i+1);
-  MacdIplus4H1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_CLOSE,MODE_MAIN,i+2);
+  MacdIplus3H1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_CLOSE,i+1);
+  MacdIplus4H1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_CLOSE,i+2);
   // Print("i= ",i, " countHalfWavesH1 = ",countHalfWavesH1," what0HalfWaveMACDH1 = ", what0HalfWaveMACDH1," MacdIplus3H1= ", MacdIplus3H1, " MacdIplus4H1= ", MacdIplus4H1 );
 
     if (countHalfWavesH1==0 && what0HalfWaveMACDH1==0 && MacdIplus3H1<0 && MacdIplus4H1<0)
@@ -527,15 +528,15 @@ ArrayResize - в цикле не пойдет, так как есть
   Macd_2M15=0;
   while(!(Macd_1M15>0 && Macd_2M15>0) && !(Macd_1M15<0 && Macd_2M15<0)){
   begin++;
-    Macd_1M15=iOsMA(NULL,PERIOD_M15,12,26,9,PRICE_CLOSE,MODE_MAIN,begin);
-    Macd_2M15=iOsMA(NULL,PERIOD_M15,12,26,9,PRICE_CLOSE,MODE_MAIN,begin+1);
+    Macd_1M15=iOsMA(NULL,PERIOD_M15,12,26,9,PRICE_CLOSE,begin);
+    Macd_2M15=iOsMA(NULL,PERIOD_M15,12,26,9,PRICE_CLOSE,begin+1);
     if        (Macd_1M15>0 && Macd_2M15>0){what0HalfWaveMACDM15 =0;}
     else if   (Macd_1M15<0 && Macd_2M15<0){what0HalfWaveMACDM15 =1;}
   }
   // else // Print("   ERROR (Catched 0) MACD equals 0,0000 PERIOD_M15 ", countHalfWavesM15);
   for (i = begin;countHalfWavesM15<=3;i++){
-  MacdIplus3M15=iOsMA(NULL,PERIOD_M15,12,26,9,PRICE_CLOSE,MODE_MAIN,i+1);
-  MacdIplus4M15=iOsMA(NULL,PERIOD_M15,12,26,9,PRICE_CLOSE,MODE_MAIN,i+2);
+  MacdIplus3M15=iOsMA(NULL,PERIOD_M15,12,26,9,PRICE_CLOSE,i+1);
+  MacdIplus4M15=iOsMA(NULL,PERIOD_M15,12,26,9,PRICE_CLOSE,i+2);
 
     if (countHalfWavesM15==0 && what0HalfWaveMACDM15==0 && MacdIplus3M15<0 && MacdIplus4M15<0)
         {
@@ -662,15 +663,15 @@ ArrayResize - в цикле не пойдет, так как есть
   Macd_2M5=0;
   while(!(Macd_1M5>0 && Macd_2M5>0) && !(Macd_1M5<0 && Macd_2M5<0)){
   begin++;
-    Macd_1M5=iOsMA(NULL,PERIOD_M5,12,26,9,PRICE_CLOSE,MODE_MAIN,begin);
-    Macd_2M5=iOsMA(NULL,PERIOD_M5,12,26,9,PRICE_CLOSE,MODE_MAIN,begin+1);
+    Macd_1M5=iOsMA(NULL,PERIOD_M5,12,26,9,PRICE_CLOSE,begin);
+    Macd_2M5=iOsMA(NULL,PERIOD_M5,12,26,9,PRICE_CLOSE,begin+1);
     if        (Macd_1M5>0 && Macd_2M5>0){what0HalfWaveMACDM5 =0;}
     else if   (Macd_1M5<0 && Macd_2M5<0){what0HalfWaveMACDM5 =1;}
   }
   // else // Print("   ERROR (Catched 0) MACD equals 0,0000 PERIOD_M5 ", countHalfWavesM5);
   for (i = begin;countHalfWavesM5<=3;i++){
-  MacdIplus3M5=iOsMA(NULL,PERIOD_M5,12,26,9,PRICE_CLOSE,MODE_MAIN,i+1);
-  MacdIplus4M5=iOsMA(NULL,PERIOD_M5,12,26,9,PRICE_CLOSE,MODE_MAIN,i+2);
+  MacdIplus3M5=iOsMA(NULL,PERIOD_M5,12,26,9,PRICE_CLOSE,i+1);
+  MacdIplus4M5=iOsMA(NULL,PERIOD_M5,12,26,9,PRICE_CLOSE,i+2);
 
     if (countHalfWavesM5==0 && what0HalfWaveMACDM5==0 && MacdIplus3M5<0 && MacdIplus4M5<0)
         {
@@ -798,15 +799,15 @@ ArrayResize - в цикле не пойдет, так как есть
   Macd_2M1=0;
   while(!(Macd_1M1>0 && Macd_2M1>0) && !(Macd_1M1<0 && Macd_2M1<0)){
   begin++;
-    Macd_1M1=iOsMA(NULL,PERIOD_M1,12,26,9,PRICE_CLOSE,MODE_MAIN,begin);
-    Macd_2M1=iOsMA(NULL,PERIOD_M1,12,26,9,PRICE_CLOSE,MODE_MAIN,begin+1);
+    Macd_1M1=iOsMA(NULL,PERIOD_M1,12,26,9,PRICE_CLOSE,begin);
+    Macd_2M1=iOsMA(NULL,PERIOD_M1,12,26,9,PRICE_CLOSE,begin+1);
     if        (Macd_1M1>0 && Macd_2M1>0){what0HalfWaveMACDM1 =0;}
     else if   (Macd_1M1<0 && Macd_2M1<0){what0HalfWaveMACDM1 =1;}
   }
   // else // Print("   ERROR (Catched 0) MACD equals 0,0000 PERIOD_M1 ", countHalfWavesM1);
   for (i = begin;countHalfWavesM1<=3;i++){
-  MacdIplus3M1=iOsMA(NULL,PERIOD_M1,12,26,9,PRICE_CLOSE,MODE_MAIN,i+1);
-  MacdIplus4M1=iOsMA(NULL,PERIOD_M1,12,26,9,PRICE_CLOSE,MODE_MAIN,i+2);
+  MacdIplus3M1=iOsMA(NULL,PERIOD_M1,12,26,9,PRICE_CLOSE,i+1);
+  MacdIplus4M1=iOsMA(NULL,PERIOD_M1,12,26,9,PRICE_CLOSE,i+2);
 
     if (countHalfWavesM1==0 && what0HalfWaveMACDM1==0 && MacdIplus3M1<0 && MacdIplus4M1<0)
         {
@@ -1236,8 +1237,8 @@ result3 = iLow(NULL,PERIOD_M5,halfWave_3M5[0]);
 
 
 
- Macd_0_M1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_OPEN,MODE_MAIN,0);
- Macd_1_M1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_OPEN,MODE_MAIN,1);
+ Macd_0_M1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_OPEN,0);
+ Macd_1_M1=iOsMA(NULL,PERIOD_H1,12,26,9,PRICE_OPEN,1);
 
 
 /*Logics End The algorithm of the trend criteria definition*/
