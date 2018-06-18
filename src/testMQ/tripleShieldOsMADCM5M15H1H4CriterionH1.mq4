@@ -1243,7 +1243,10 @@ result3 = iLow(NULL,PERIOD_M5,halfWave_3M5[0]);
 
 /*Logics End The algorithm of the trend criteria definition*/
 /*Double Critrerion H1 and H1 contratrend Criterion not compatible,
- take DСH1 away*/
+ take DСH1 away.
+still have doubts about the not owrking:
+Make test (trailing 50%):
+*/
 
    buy=1;
    sell=1;
